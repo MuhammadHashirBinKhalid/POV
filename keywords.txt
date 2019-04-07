@@ -1,0 +1,19 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+ 
+ArduinoML KEYWORD1
+ 
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+ 
+begin    KEYWORD2
+train KEYWORD2
+predict KEYWORD2
+evaluate KEYWORD2
+setHyperParameters KEYWORD2
+ 
+#######################################
+# Constants (LITERAL1)
+#######################################
