@@ -1,7 +1,8 @@
 #include <ESP8266WiFi.h>
-#include "textdisplay.h"
 #include <FastLED.h>
-#define NUM_LEDS 8
+#include <POV.h>
+POV pov(8, D1,D2);
+/*#define NUM_LEDS 8
 #define DATA_PIN D1 //for blade1
 #define CLOCK_PIN D2 //for blade1
 #define DATA_PIN1 D5 //for blade2
@@ -11,9 +12,10 @@
 //#define color 
 CRGB leds1[NUM_LEDS];
 CRGB leds2[NUM_LEDS];
-CRGB leds3[NUM_LEDS];
-const char* ssid = "VPN IC";
-const char* password = "abcd1234";
+CRGB leds3[NUM_LEDS];*/
+const char* ssid = "";
+const char* password = "";
+/*
 String value;   //string for fontsize
 char charBuf[60];
 String value1; //string for text
@@ -78,14 +80,16 @@ unsigned long current_micros;
 unsigned long previous_micros1 = 0, previous_micros2 = 0, previous_micros3 = 0, previous_micros4 = 0;
 int m1 = 0, m2 = 0, m3 = 0;
 bool b1init = 0, b2init = 0, b3init = 0;
-
+*/
 void setup() {
-  attachInterrupt(digitalPinToInterrupt(sensor), ISR, CHANGE);
+  /*attachInterrupt(digitalPinToInterrupt(sensor), ISR, CHANGE);
   FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN>(leds1, NUM_LEDS);
   FastLED.addLeds<APA102, DATA_PIN1, CLOCK_PIN1>(leds2, NUM_LEDS);
   FastLED.addLeds<APA102, DATA_PIN2, CLOCK_PIN2>(leds3, NUM_LEDS);
-  FastLED.setBrightness(60);
+  FastLED.setBrightness(60);*/
   Serial.begin(115200);
+    pov.init(D7);
+    pov.setState();
   // Connect to WiFi network
   Serial.println();
   Serial.println();
@@ -100,22 +104,20 @@ void setup() {
   }
   Serial.println("");
   Serial.println("WiFi connected");
-  // Start the server
-  server.begin();
-  Serial.println("Server started");
 
   // Print the IP address
   Serial.println(WiFi.localIP());
 }
-
+/*
 int i1 = 0, i2 = 0, i3 = 0;
 unsigned long T;
 int tempcount = 0;
-int tempvalue=0;
+int tempvalue=0;*/
 void loop() {
-  // Check if a client has connected
- 
- povserver();
+
+pov.server();
+pov.run();}
+/* povserver();
   
    if (State == HIGH) {
     previous_micros1 = micros();
@@ -229,7 +231,7 @@ void printLetterb3(bool letter[])
   }
 */
 // Use one Routine to handle each group
-
+/*
 void ISR () // handle pin change interrupt for D0 to D7 here
 {
   if (mybool == 0) {
@@ -237,4 +239,4 @@ void ISR () // handle pin change interrupt for D0 to D7 here
     mybool = 1;
   }
   else mybool = 0;
-}
+}*/
